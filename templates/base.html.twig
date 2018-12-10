@@ -23,7 +23,16 @@
                   <a class="nav-item nav-link " href="{{path('pro_stage')}}">Acceuil </a>
                   <a class="nav-item nav-link" href="{{path('pro_stage_formation')}}">Formations</a>
                   <a class="nav-item nav-link" href="{{path('pro_stage_entreprise')}}">Entreprises</a>
-                  <a class="nav-item nav-link" href="{{path('pro_stage_stages',{id:8})}}">Stages</a>
+                  <!--<a class="nav-item nav-link" href="{{path('pro_stage_stages',{id:8})}}">Stages</a>-->
+                  <!-- Sous menu déroulant -->
+                  <div class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="{{path('pro_stage_stages',{id:8})}}" role="button" aria-haspopup="true" aria-expanded="true">Stages</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{{path('pro_stage_stages',{id:"tous"})}}">Tous les stages</a>
+                      <a class="dropdown-item" href="{{path('pro_stage_stages',{id:"Entreprises"})}}">Par entreprises</a>
+                      <a class="dropdown-item" href="{{path('pro_stage_stages',{id:"Formations"})}}">Par formation</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </nav>
