@@ -1,0 +1,15 @@
+{%extends "base.html.twig"%}
+
+  {% block contenu %}
+  <center><h1>Bienvenue sur la page d'acceuil ProStage</h1></center>
+  <ul>
+    <li>
+        <a href="{{path('pro_stage_entreprise')}}">Les entreprises</br></a>
+    </li>
+    <li>
+        <a href="{{path('pro_stage_formation')}}">Les formations de l'IUT </a>
+    </li>
+    <li>
+      <a href="{{path('pro_stage_stages',{id:8})}}">Les Stages</br></a>
+  </ul>
+  {% endblock %}
