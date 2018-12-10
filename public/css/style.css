@@ -1,0 +1,12 @@
+h2{
+
+color: blue;
+text-align: center;
+
+}
+
+.dropdown-toggle:active, .open .dropdown-toggle {
+       background:#333A41 !important;
+       color:#333A41 !important;
+       border-color:#333A41 ;
+   }
