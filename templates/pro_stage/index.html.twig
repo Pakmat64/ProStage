@@ -1,15 +1,42 @@
 {%extends "base.html.twig"%}
 
   {% block contenu %}
-  <h2>Bienvenue sur la page d'acceuil ProStage</br></br></h2>
-  <ul>
-    <li>
-        <a href="{{path('pro_stage_entreprise')}}">Les entreprises</br></a>
-    </li>
-    <li>
-        <a href="{{path('pro_stage_formation')}}">Les formations de l'IUT </a>
-    </li>
-    <li>
-      <a href="{{path('pro_stage_stages',{id:8})}}">Les Stages</br></a>
-  </ul>
+    {% block intro %}
+  <br> <br>
+  <p>Vous trouverez sur cette application des stages pouvant vous convenir, vous trouverez également les formations et les entreprises concernées. <br>
+    Son seul but : vous aidez dans la recherche de stage et trouver le stage vous convenant le plus </p>
+    {% endblock %}
+
+    <div class="card-deck">
+  <div class="card">
+    <a href="{{path('pro_stage_stages',{id:9})}}" class="card-link">
+      <img class="card-img-top" src="https://static.latribune.fr/full_width/380014/safran-annonce-une-commande-de-2-milliards-de-dollars-pour-cfm.jpg" alt="Card image cap">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">Stage chez safran</h5>
+      <p class="card-text">Description.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <a href="{{path('pro_stage_stages',{id:10})}}" class="card-link">
+      <img class="card-img-top" src="http://lepointsur.com/wp-content/uploads/2014/10/entreprise-total.jpg" alt="Card image cap">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">Stage chez Total</h5>
+      <p class="card-text">Description</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <a href="{{path('pro_stage_stages',{id:11})}}" class="card-link">
+      <img class="card-img-top" src="https://www.usinenouvelle.com/mediatheque/9/6/5/000155569_image_896x598/rafale-a-antenne-active.jpg" alt="Card image cap">
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">Stage chez Dasault</h5>
+      <p class="card-text">Description</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+</div>
   {% endblock %}
