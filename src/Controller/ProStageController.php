@@ -4,6 +4,10 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Stage;
+use App\Entity\Entreprise;
+use App\Entity\Formation;
+
 
 class ProStageController extends AbstractController
 {
@@ -12,9 +16,8 @@ class ProStageController extends AbstractController
      */
     public function index()
     {
-        return $this->render('pro_stage/index.html.twig', [
-            'controller_name' => 'ProStageController',
-        ]);
+        $repoStage = $this->getDoctrine()->getRepository(Stage::class)
+        return $this->render('pro_stage/index.html.twig');
     }
 
     /**
