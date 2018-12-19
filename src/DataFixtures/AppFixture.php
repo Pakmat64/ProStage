@@ -43,18 +43,19 @@ class AppFixture extends Fixture
       $formationIUT->setAdresse("2 Allée du Parc Montaury, 64600 Anglet");
       $formationIUT->setTelephone("0559269802");
       $formationIUT->setMail("forco@iutbayonne.univ-pau.fr");
-      //$formationIUT->addStage($stageSafran1);
-      //$formationIUT->addStage($stageSafran2);
+      $formationIUT->addStage($stageSafran1);
+      $formationIUT->addStage($stageSafran2);
       $manager->persist($formationIUT);
 
 
       //-------------Les stages -----------
 
       $stageSafran1 = new Stage();
-      $stageSafran1->setInitule("Refonte et mise a jout de l'intranet du service production");
-      $stageSafran1->setDescriptif("description");
+      $stageSafran1->setInitule("Refonte et mise a jout de l'intranet de production");
+      $stageSafran1->setDescriptif("Dans ce stage, il s'agit de rédéfinir l'intranet de la branche de production de safran, ce qui touchera la conception et le codage");
       $stageSafran1->setDomaine("Web");
       $stageSafran1->setEmail("safran@gmail.com");
+      $stageSafran1->setURL("https://static.latribune.fr/full_width/380014/safran-annonce-une-commande-de-2-milliards-de-dollars-pour-cfm.jpg");
       $stageSafran1->setEntreprise($entrepriseSafran);
       $stageSafran1->addFormation($formationIUT);
 
@@ -62,19 +63,21 @@ class AppFixture extends Fixture
 
       $stageSafran2 = new Stage();
       $stageSafran2->setInitule("Développement d'un viewer cartographique");
-      $stageSafran2->setDescriptif("Descriptif");
+      $stageSafran2->setDescriptif("Il s'agit maintenant de coder une application permettant de visualiser la cartographie des processus métier d'une entreprise");
       $stageSafran2->setDomaine("Programmtion");
       $stageSafran2->setEmail("safran@gmail.com");
+      $stageSafran2->setURL("https://media.glassdoor.com/l/ba/3f/2d/a7/safram.jpg");
       $stageSafran2->setEntreprise($entrepriseSafran);
       $stageSafran2->addFormation($formationIUT);
 
       $manager->persist($stageSafran2);
 
       $stageSafran3 = new Stage();
-      $stageSafran3->setInitule("Conception d'un module d'export / import de données SAP");
-      $stageSafran3->setDescriptif("Descriptif");
+      $stageSafran3->setInitule("Conception d'un module d'export & import de données SAP");
+      $stageSafran3->setDescriptif("Ce stage ne concerne que la partie conception touchant les données d'import et export de données");
       $stageSafran3->setDomaine("Conception - Base de données");
       $stageSafran3->setEmail("safran@gmail.com");
+      $stageSafran3->setURL("http://www.air-cosmos.com/upload/18/pics/2016/05/web/572c5ac952682.jpg");
       $stageSafran3->setEntreprise($entrepriseSafran);
       $stageSafran3->addFormation($formationIUT);
 

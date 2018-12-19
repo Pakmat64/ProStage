@@ -7,37 +7,23 @@
     Son seul but : vous aidez dans la recherche de stage et trouver le stage vous convenant le plus </p>
     {% endblock %}
 
+
     <div class="card-deck">
-  <div class="card">
-    <a href="{{path('pro_stage_stages',{id:9})}}" class="card-link">
-      <img class="card-img-top" src="https://static.latribune.fr/full_width/380014/safran-annonce-une-commande-de-2-milliards-de-dollars-pour-cfm.jpg" alt="Card image cap">
-    </a>
-    <div class="card-body">
-      <h5 class="card-title">Stage chez safran</h5>
-      <p class="card-text">Description.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <a href="{{path('pro_stage_stages',{id:10})}}" class="card-link">
-      <img class="card-img-top" src="http://lepointsur.com/wp-content/uploads/2014/10/entreprise-total.jpg" alt="Card image cap">
-    </a>
-    <div class="card-body">
-      <h5 class="card-title">Stage chez Total</h5>
-      <p class="card-text">Description</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <a href="{{path('pro_stage_stages',{id:11})}}" class="card-link">
-      <img class="card-img-top" src="https://www.usinenouvelle.com/mediatheque/9/6/5/000155569_image_896x598/rafale-a-antenne-active.jpg" alt="Card image cap">
-    </a>
-    <div class="card-body">
-      <h5 class="card-title">Stage chez Dasault</h5>
-      <p class="card-text">Description</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
+      {% for stageCourant in stages %}
+
+        <div class="card">
+          <a href="{{path('pro_stage_stages',{id:stageCourant.id})}}" class="card-link">
+            <img class="card-img-top" src="{{stageCourant.URL}}" alt="Card image cap">
+          </a>
+        <div class="card-body">
+          <h5 class="card-title">{{stageCourant.initule}}</h5>
+          <p class="card-text">{{stageCourant.descriptif}}</p>
+          <p class="card-text"><b>Entreprise : </b> {{stageCourant.entreprise.intitule}}</p>
+        </div>
+      </div>
+
+    {% endfor %}
+
 </div>
 
 <nav aria-label="Page navigation example">

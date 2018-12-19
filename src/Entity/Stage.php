@@ -49,6 +49,11 @@ class Stage
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $URL;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -141,6 +146,18 @@ class Stage
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getURL(): ?string
+    {
+        return $this->URL;
+    }
+
+    public function setURL(?string $URL): self
+    {
+        $this->URL = $URL;
 
         return $this;
     }
