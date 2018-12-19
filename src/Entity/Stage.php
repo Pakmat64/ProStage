@@ -39,6 +39,16 @@ class Stage
      */
     private $formations;
 
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    private $domaine;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
     public function __construct()
     {
         $this->formations = new ArrayCollection();
@@ -107,6 +117,30 @@ class Stage
         if ($this->formations->contains($formation)) {
             $this->formations->removeElement($formation);
         }
+
+        return $this;
+    }
+
+    public function getDomaine(): ?string
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(string $domaine): self
+    {
+        $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

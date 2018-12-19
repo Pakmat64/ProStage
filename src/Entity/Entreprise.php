@@ -31,22 +31,7 @@ class Entreprise
     /**
      * @ORM\Column(type="string", length=25)
      */
-    private $telephone;
-
-    /**
-     * @ORM\Column(type="string", length=25)
-     */
-    private $mail;
-
-    /**
-     * @ORM\Column(type="string", length=25)
-     */
     private $activite;
-
-    /**
-     * @ORM\Column(type="string", length=25)
-     */
-    private $responsable;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="entreprise")
@@ -87,29 +72,6 @@ class Entreprise
         return $this;
     }
 
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
 
     public function getActivite(): ?string
     {
@@ -119,18 +81,6 @@ class Entreprise
     public function setActivite(string $activite): self
     {
         $this->activite = $activite;
-
-        return $this;
-    }
-
-    public function getResponsable(): ?string
-    {
-        return $this->responsable;
-    }
-
-    public function setResponsable(string $responsable): self
-    {
-        $this->responsable = $responsable;
 
         return $this;
     }

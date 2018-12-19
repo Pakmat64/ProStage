@@ -38,6 +38,22 @@ class ProStageController extends AbstractController
      */
     public function afficherPageStage($id)
     {
-      return$this->render('pro_stage/stages.html.twig',['idStage'=>$id]);
+      return $this->render('pro_stage/stages.html.twig',['idStage'=>$id]);
     }
+
+    ///**
+     //* @Route("/stages/entreprise/{id}", name="pro_stage_stagesParEntreprise")
+     //*/
+    //public function afficherPageStage($id)
+    //{
+      //$entreprise= $this->getDoctrine()->getRepository(Entreprise::class)->findOneBy(["id" => $id])
+
+      //$stages = $this->getDoctrine()->getRepository(Stage::class)->findBy(["entreprises"=>$id]);
+      //$stage = $repoStage->findBy([])
+
+      //return $this->render('pro_stage/stages.html.twig',['idStage'=>$id,"entreprise");
+    //}
+
+
+
 }
