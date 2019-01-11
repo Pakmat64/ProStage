@@ -54,7 +54,7 @@ class AppFixture extends Fixture
       //-------------Les stages -----------
 
       $stageSafran1 = new Stage();
-      $stageSafran1->setInitule("Refonte et mise a jout de l'intranet de production");
+      $stageSafran1->setInitule("Refonte e mise a jout de l'intranet de production");
       $stageSafran1->setDescriptif("Dans ce stage, il s'agit de rédéfinir l'intranet de la branche de production de safran, ce qui touchera la conception et le codage");
       $stageSafran1->setDomaine("Web");
       $stageSafran1->setEmail("safran@gmail.com");
