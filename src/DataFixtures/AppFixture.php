@@ -20,6 +20,7 @@ class AppFixture extends Fixture
       $entrepriseSafran->setIntitule("Safran");
       $entrepriseSafran->setAdresse("5 avenue du 14 juillet");
       $entrepriseSafran->setActivite("Aéronotique");
+      $entrepriseSafran->setURL("http://scd.rfi.fr/sites/filesrfi/imagecache/rfi_16x9_1024_578/sites/images.rfi.fr/files/aef_image/2016-02-26T103056Z_2061078702_D1BESPFSDSAA_RTRMADP_3_FRANCE-TOTAL-IRAQ_0.JPG");
       //$entrepriseSafran->addStage($stageSafran1);
       //$entrepriseSafran->addStage($stageSafran2);
       $manager->persist($entrepriseSafran);
@@ -28,12 +29,14 @@ class AppFixture extends Fixture
       $entrepriseTotal->setIntitule("Total");
       $entrepriseTotal->setAdresse("6 rue du 1 mai");
       $entrepriseTotal->setActivite("Pétrole");
+      $entrepriseTotal->setURL("https://media.glassdoor.com/l/ba/3f/2d/a7/safram.jpg");
       $manager->persist($entrepriseTotal);
 
       $entrepriseDassaut = new Entreprise();
       $entrepriseDassaut->setIntitule("Dassaut");
       $entrepriseDassaut->setAdresse("67 avenue de la sirenne");
       $entrepriseDassaut->setActivite("Aéronotique");
+      $entrepriseDassaut->setURL("https://www.dassault-aviation.com/wp-content/blogs.dir/1/files/2018/05/DA00031027_Si-1.jpg");
       $manager->persist($entrepriseDassaut);
 
 
@@ -43,8 +46,8 @@ class AppFixture extends Fixture
       $formationIUT->setAdresse("2 Allée du Parc Montaury, 64600 Anglet");
       $formationIUT->setTelephone("0559269802");
       $formationIUT->setMail("forco@iutbayonne.univ-pau.fr");
-      $formationIUT->addStage($stageSafran1);
-      $formationIUT->addStage($stageSafran2);
+      //$formationIUT->addStage($stageSafran1);
+      //$formationIUT->addStage($stageSafran2);
       $manager->persist($formationIUT);
 
 

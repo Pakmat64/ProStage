@@ -4,48 +4,18 @@
   <br><center><h3>Voici la liste des entreprises proposant un stage</h3><br><br></center>
 
 <div class="card-columns">
-
+  {% for entrepriseCour in entreprises %}
     <div class="card">
       <a href="" class="card-link">
-        <img class="card-img-top" src="http://scd.rfi.fr/sites/filesrfi/imagecache/rfi_16x9_1024_578/sites/images.rfi.fr/files/aef_image/2016-02-26T103056Z_2061078702_D1BESPFSDSAA_RTRMADP_3_FRANCE-TOTAL-IRAQ_0.JPG" alt="Card image cap">
+        <img class="card-img-top" src="{{entrepriseCour.URL}}" alt="Card image cap">
       </a>
       <div class="card-body">
-        <h5 class="card-title">Total</h5>
-        <p class="card-text">Description.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <h5 class="card-title">{{entrepriseCour.intitule}}</h5>
+        <p class="card-text"><b>Activité : </b>{{entrepriseCour.activite}}</p>
+        <p class="card-text"><b>Adresse : </b>{{entrepriseCour.adresse}}</p>
       </div>
     </div>
-    <div class="card ">
-      <a href="" class="card-link">
-        <img class="card-img-top" src="https://media.glassdoor.com/l/ba/3f/2d/a7/safram.jpg" alt="Card image cap">
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">Safran</h5>
-        <p class="card-text">Description</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-    <div class="card">
-      <a href="" class="card-link">
-        <img class="card-img-top" src="https://www.dassault-aviation.com/wp-content/blogs.dir/1/files/2018/05/DA00031027_Si-1.jpg" alt="Card image cap">
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">Dassault</h5>
-        <p class="card-text">Description</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-
-        </div>
-        <div class="card">
-          <a href="" class="card-link">
-            <img class="card-img-top" src="https://peugeotretailbusiness.fr/wp-content/themes/DRF/img/bluebox_V2.jpg" alt="Card image cap">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">Peugeot</h5>
-            <p class="card-text">Description</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
+  {% endfor %}
   </div>
 
   <nav aria-label="Page navigation example">

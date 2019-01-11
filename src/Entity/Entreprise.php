@@ -38,6 +38,11 @@ class Entreprise
      */
     private $stages;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $URL;
+
     public function __construct()
     {
         $this->stages = new ArrayCollection();
@@ -112,6 +117,18 @@ class Entreprise
                 $stage->setEntreprise(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getURL(): ?string
+    {
+        return $this->URL;
+    }
+
+    public function setURL(string $URL): self
+    {
+        $this->URL = $URL;
 
         return $this;
     }
