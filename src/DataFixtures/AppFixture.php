@@ -86,6 +86,16 @@ class AppFixture extends Fixture
 
       $manager->persist($stageSafran3);
 
+      $stageDassault1 = new Stage();
+      $stageDassault1->setInitule("Réalisation d’une plateforme de simulation d’images ultrasonores");
+        $stageDassault1->setDescriptif("BlaBlaBlaBla");
+      $stageDassault1->setDomaine("Développement web");
+        $stageDassault1->setEmail("dassault@gmail.com");
+        $stageDassault1->setURL("http://www.air-cosmos.com/upload/18/pics/2016/05/web/572c5ac952682.jpg");
+        $stageDassault1->setEntreprise($entrepriseDassaut);
+      $stageDassault1->addFormation($formationIUT);
+
+      $manager->persist($stageDassault1);
 
 
 
