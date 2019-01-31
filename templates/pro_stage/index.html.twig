@@ -1,30 +1,52 @@
 {%extends "base.html.twig"%}
 
   {% block contenu %}
-    {% block intro %}
-  <br> <br>
-  <p>Vous trouverez sur cette application des stages pouvant vous convenir, vous trouverez également les formations et les entreprises concernées. <br>
-    Son seul but : vous aidez dans la recherche de stage et trouver le stage vous convenant le plus </p>
-    {% endblock %}
 
-
-    <div class="card-deck">
-      {% for stageCourant in stages %}
-
+    <div class="row">
+      <div class="col-12">
+          <br>
+      </div>
+    </div>
+    <div class="container">
+    <div class="row">
+      <div class="col-4">
         <div class="card">
-          <a href="{{path('pro_stage_stages',{id:stageCourant.id})}}" class="card-link">
-            <img class="card-img-top" src="{{stageCourant.URL}}" alt="Card image cap">
-          </a>
-        <div class="card-body">
-          <h5 class="card-title">{{stageCourant.initule}}</h5>
-          <p class="card-text">{{stageCourant.descriptif}}</p>
-          <p class="card-text"><b>Entreprise : </b> {{stageCourant.entreprise.intitule}}</p>
+          <div class="card-header">
+            Appliquer un filtre
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="icon-list-bullet"></i>Tous les stages</li>
+            <li class="list-group-item"><i class="icon-home">Par entreprise</i></li>
+            <li class="list-group-item"><i class="icon-book"></i>Par formation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="card">
+          <div class="card-header">
+            Stages actuellement proposés
+          </div>
+          <ul class="list-group list-group-flush">
+            {% for stageCourant in stages %}
+              <li class="list-group-item">
+                <a href="{{ path('pro_stage_stages',{id:stageCourant.id})}}">
+                  {{stageCourant.initule}} - {{stageCourant.entreprise.intitule}}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
       </div>
 
-    {% endfor %}
+    </div>
+  </div>>
 
-</div>
+
+
+
+
+
+
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
