@@ -2,10 +2,9 @@
 
   {% block contenu %}
 
-    <div class="row">
-      <div class="col-12">
+
           <br>
-      </div>
+
     </div>
     <div class="container">
     <div class="row">
@@ -15,8 +14,32 @@
             Appliquer un filtre
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="icon-list-bullet"></i>Tous les stages</li>
-            <li class="list-group-item"><i class="icon-home">Par entreprise</i></li>
+            <li class="list-group-item"><a href="{{path('pro_stage')}}"><i class="icon-list-bullet"></i>Tous les stages</a></li>
+
+            <li class="list-group-item"><i class="icon-home">Par entreprise</i>
+
+              <ul class="list-group list-group-flush">
+
+                <!-- Partie à déboguer (version txt )-->
+                <a href="{{ path('pro_stage_parEntreprise',{nom:'Safran'})}}" >
+                  <li class="list-group-item"><i class="icon-home">Safran</i>
+                  </li>
+                </a>
+                <a href="{{ path('pro_stage_parEntreprise',{nom:'Total'})}}" >
+                  <li class="list-group-item"><i class="icon-home">Total</i>
+                  </li>
+                </a>
+                <a href="{{ path('pro_stage_parEntreprise',{nom:'Dassaut'})}}" >
+                  <li class="list-group-item"><i class="icon-home">Dassaut</i>
+                  </li>
+                </a>
+
+
+
+              </ul>
+
+
+            </li>
             <li class="list-group-item"><i class="icon-book"></i>Par formation</li>
           </ul>
         </div>
@@ -39,7 +62,7 @@
       </div>
 
     </div>
-  </div>>
+  </div>
 
 
 

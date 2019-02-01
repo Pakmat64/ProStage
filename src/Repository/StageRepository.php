@@ -23,7 +23,7 @@ class StageRepository extends ServiceEntityRepository
      * @return Stage[] Returns an array of Stage objects
       */
 
-    public function findByExampleField($nomEntreprise)
+    public function findByNomEntreprise($nomEntreprise)
     {
         return $this->createQueryBuilder('s')
             ->join('s.entreprise','e')
@@ -33,6 +33,18 @@ class StageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+    * @return Stage[] Returns an array of Stage objects
+     */
+
+   public function findAllWithEntreprise()
+   {
+       return $this->getEntityManager()->createQuery('SELECT s, e
+         FROM App\Entity\Stage s
+          JOIN s.entreprise e')->execute();
+
+   }
 
 
     /*

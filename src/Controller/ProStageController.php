@@ -11,16 +11,33 @@ use App\Entity\Formation;
 
 class ProStageController extends AbstractController
 {
+
     /**
      * @Route("/", name="pro_stage")
      */
     public function index()
     {
         $repoStage = $this->getDoctrine()->getRepository(Stage::class);
+
         $stages = $repoStage->findAll();
-        return $this->render('pro_stage/index.html.twig',['stages'=>$stages]);
+
+        $repoEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+
+        $entreprise = $repoEntreprise->findAll();
+
+        return $this->render('pro_stage/index.html.twig',['stages'=>$stages,'entreprises'=>$entreprise]);
     }
 
+
+    /**
+     * @Route("/parEntreprise/{nom}", name="pro_stage_parEntreprise")
+     */
+    public function afficherStageParEntreprise($nom)
+    {
+        $repoStageEntreprise = $this->getDoctrine()->getRepository(Stage::class);
+        $stagesEntreprise = $repoStageEntreprise->findByNomEntreprise($nom);
+        return $this->render('pro_stage/index.html.twig',['stages'=>$stagesEntreprise]);
+    }
     /**
      * @Route("/entreprise/", name="pro_stage_entreprise")
      */
