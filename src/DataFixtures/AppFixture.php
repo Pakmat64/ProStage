@@ -97,6 +97,18 @@ class AppFixture extends Fixture
 
       $manager->persist($stageDassault1);
 
+      $stageTotal1 = new Stage();
+      $stageTotal1->setInitule("Développement d'une application de partage de travail entre collègues");
+      $stageTotal1->setDescriptif("blablablabla");
+      $stageTotal1->setDomaine("Développement");
+      $stageTotal1->setEmail("totalAdmin@live.fr");
+      $stageTotal1->setURL("https://media.glassdoor.com/l/ba/3f/2d/a7/safram.jpg");
+      $stageTotal1->setEntreprise($entrepriseTotal);
+      $stageTotal1->addFormation($formationIUT);
+
+      $manager->persist($stageTotal1);
+
+
 
 
         $manager->flush();

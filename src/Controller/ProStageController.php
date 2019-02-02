@@ -19,23 +19,40 @@ class ProStageController extends AbstractController
     {
         $repoStage = $this->getDoctrine()->getRepository(Stage::class);
 
-        $stages = $repoStage->findAll();
+        $stages = $repoStage->findByDistinctNom();
+
+
 
         $repoEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
 
-        $entreprise = $repoEntreprise->findAll();
+        $entreprises = $repoEntreprise->findAll();
 
-        return $this->render('pro_stage/index.html.twig',['stages'=>$stages,'entreprises'=>$entreprise]);
+        return $this->render('pro_stage/index.html.twig',['stages'=>$stages,'entreprises'=>$entreprises]);
+    }
+
+    /**
+     * @Route("/parEntreprise/tous", name="pro_stage_tousParEntreprise")
+     */
+    public function afficherTousParEntreprise()
+    {
+        $repoStage = $this->getDoctrine()->getRepository(Stage::class);
+
+        $stagesParEntreprise = $repoStage->findAllOrderByEntreprise();
+
+        return $this->render('pro_stage/index.html.twig',['stages'=>$stagesParEntreprise,]);
     }
 
 
+
+
+
     /**
-     * @Route("/parEntreprise/{nom}", name="pro_stage_parEntreprise")
+     * @Route("/parEntreprise/{id}", name="pro_stage_parEntreprise")
      */
-    public function afficherStageParEntreprise($nom)
+    public function afficherStageParEntreprise($id)
     {
         $repoStageEntreprise = $this->getDoctrine()->getRepository(Stage::class);
-        $stagesEntreprise = $repoStageEntreprise->findByNomEntreprise($nom);
+        $stagesEntreprise = $repoStageEntreprise->findByNomEntreprise($id);
         return $this->render('pro_stage/index.html.twig',['stages'=>$stagesEntreprise]);
     }
     /**
@@ -67,18 +84,7 @@ class ProStageController extends AbstractController
       return $this->render('pro_stage/stages.html.twig',['stage'=>$stage]);
     }
 
-    ///**
-     //* @Route("/stages/entreprise/{id}", name="pro_stage_stagesParEntreprise")
-     //*/
-    //public function afficherPageStage($id)
-    //{
-      //$entreprise= $this->getDoctrine()->getRepository(Entreprise::class)->findOneBy(["id" => $id])
 
-      //$stages = $this->getDoctrine()->getRepository(Stage::class)->findBy(["entreprises"=>$id]);
-      //$stage = $repoStage->findBy([])
-
-      //return $this->render('pro_stage/stages.html.twig',['idStage'=>$id,"entreprise");
-    //}
 
 
 

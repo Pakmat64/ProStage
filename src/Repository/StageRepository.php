@@ -23,12 +23,12 @@ class StageRepository extends ServiceEntityRepository
      * @return Stage[] Returns an array of Stage objects
       */
 
-    public function findByNomEntreprise($nomEntreprise)
+    public function findByNomEntreprise($id)
     {
         return $this->createQueryBuilder('s')
             ->join('s.entreprise','e')
-            ->andWhere('e.intitule = :nom')
-            ->setParameter('nom', $nomEntreprise)
+            ->Where('e.id = :ident')
+            ->setParameter('ident', $id)
             ->getQuery()
             ->getResult()
         ;
@@ -38,12 +38,28 @@ class StageRepository extends ServiceEntityRepository
     * @return Stage[] Returns an array of Stage objects
      */
 
-   public function findAllWithEntreprise()
+   public function findAllOrderByEntreprise()
    {
-       return $this->getEntityManager()->createQuery('SELECT s, e
-         FROM App\Entity\Stage s
-          JOIN s.entreprise e')->execute();
+       return $this->createQueryBuilder('s')
+           ->join('s.entreprise','e')
+           ->orderBy('e.intitule','DESC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
+    /**
+    * @return Stage[] Returns an array of Stage objects
+     */
+
+   public function findByDistinctNom()
+   {
+       return $this->createQueryBuilder('s')
+          ->select('s','e')->distinct(true)
+          ->leftJoin('s.entreprise','e')
+          ->getQuery()
+          ->getResult()
+      ;
    }
 
 
