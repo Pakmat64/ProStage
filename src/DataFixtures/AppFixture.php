@@ -71,7 +71,7 @@ class AppFixture extends Fixture
       $stageSafran2->setEmail("safran@gmail.com");
       $stageSafran2->setURL("https://media.glassdoor.com/l/ba/3f/2d/a7/safram.jpg");
       $stageSafran2->setEntreprise($entrepriseSafran);
-      $stageSafran2->addFormation($formationIUT);
+      //$stageSafran2->addFormation($formationIUT);
 
       $manager->persist($stageSafran2);
 
@@ -96,6 +96,7 @@ class AppFixture extends Fixture
       $stageDassault1->addFormation($formationIUT);
 
       $manager->persist($stageDassault1);
+
 
       $stageTotal1 = new Stage();
       $stageTotal1->setInitule("Développement d'une application de partage de travail entre collègues");

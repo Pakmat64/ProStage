@@ -11,7 +11,7 @@
     </head>
     <body>
 {% block caroussel %}
-<div class="container-all">
+<div class="container-fluid">
     <div class="row" >
         <div class="col-12">
           <div class="carousel slide" id="carousel-264434">
@@ -58,7 +58,7 @@
     {% endblock %}
 
    <!-- Le MENU (style noir)-->
-      <div class="container-all">
+      <div class="container-fluid">
         <div class="row" >
             {% block menu %}
           <div class="col-12  ">
@@ -94,12 +94,26 @@
       </div>
 
 
-        <div class="container">
-          {% block contenu %}
 
+          {% block contenu %}
+          <div class="container-fluid">
+          <div class="row" style="margin-top:15px;">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5>
+                    {% block titrePage %}{% endblock %}
+                  </h5>
+                </div>
+                <div class="card-body">
+                  {% block contenuPage %}{% endblock %}
+                </div>
+              </div>
+            </div>
           </div>
-          {% endblock %}
         </div>
+          {% endblock %}
+
 
         {% block javascripts %}
               <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

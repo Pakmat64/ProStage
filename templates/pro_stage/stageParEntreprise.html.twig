@@ -1,44 +1,48 @@
 {%extends "base.html.twig"%}
 
-  {% block contenu %}
+    {% block titrePage %}
+      Les stages de l'entreprise
+    {% endblock %}
 
-<div class="row">
-  <div class="col-12">
-      <br>
-  </div>
-</div>
-<div class="container">
-<div class="row">
-  <div class="col-4">
-    <div class="card">
-      <div class="card-header">
-        Appliquer un filtre
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><i class="icon-list-bullet"></i>Tous les stages</li>
-        <li class="list-group-item"><i class="icon-home">Par entreprise</i></li>
-        <li class="list-group-item"><i class="icon-book"></i>Par formation</li>
-      </ul>
-    </div>
-  </div>
-  <div class="col-8">
-    <div class="card">
-      <div class="card-header">
-        Stages actuellement proposés
-      </div>
-      <ul class="list-group list-group-flush">
-        {% for stageCourant in stages %}
-          <li class="list-group-item">
-            <a href="{{ path('pro_stage_stages',{id:stageCourant.id})}}">
-              {{stageCourant.initule}}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
+    {% block contenuPage %}
 
-</div>
-</div>
+      </div>
+      <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="card">
+            <div class="card-header">
+              Appliquer un filtre
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="icon-list-bullet">
+                  Tous les stages
+                </i>
+              </li>
+              <li class="list-group-item"><i class="icon-home">Par entreprise</i></li>
+              <li class="list-group-item"><i class="icon-book"></i>Par formation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="card">
+            <div class="card-header">
+              Stages actuellement proposés
+            </div>
+            <ul class="list-group list-group-flush">
+              {% for stageCourant in stages %}
+                <li class="list-group-item">
+                  <a href="{{ path('pro_stage_stages',{id:stageCourant.id})}}">
+                    {{stageCourant.initule}}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      </div>
 
 {% endblock %}

@@ -7,7 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
-
+use App\Repository\StageRepository;
+use App\Repository\EntrepriseRepository;
 
 class ProStageController extends AbstractController
 {
@@ -15,53 +16,57 @@ class ProStageController extends AbstractController
     /**
      * @Route("/", name="pro_stage")
      */
-    public function index()
+    public function index(StageRepository $repoStage)
     {
-        $repoStage = $this->getDoctrine()->getRepository(Stage::class);
+
 
         $stages = $repoStage->findByDistinctNom();
 
 
 
-        $repoEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+          //$repoEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
 
-        $entreprises = $repoEntreprise->findAll();
+        //$entreprises = $repoEntreprise->findAll();
 
-        return $this->render('pro_stage/index.html.twig',['stages'=>$stages,'entreprises'=>$entreprises]);
+        return $this->render('pro_stage/index.html.twig',['stages'=>$stages]);
     }
 
     /**
      * @Route("/parEntreprise/tous", name="pro_stage_tousParEntreprise")
      */
-    public function afficherTousParEntreprise()
+    public function afficherTousParEntreprise(StageRepository $repoStage)
     {
-        $repoStage = $this->getDoctrine()->getRepository(Stage::class);
-
         $stagesParEntreprise = $repoStage->findAllOrderByEntreprise();
 
-        return $this->render('pro_stage/index.html.twig',['stages'=>$stagesParEntreprise,]);
+        return $this->render('pro_stage/stageTousParEntreprise.html.twig',['stages'=>$stagesParEntreprise,]);
     }
 
+    /**
+     * @Route("/parFormation/tous", name="pro_stage_tousParFormation")
+     */
+    public function afficherTousParFormation(StageRepository $repoStage)
+    {
+        $stagesParFormation = $repoStage->findAllOrderByFormation();
 
-
-
+        return $this->render('pro_stage/stageTousParFormation.html.twig',['stages'=>$stagesParFormation,]);
+    }
 
     /**
      * @Route("/parEntreprise/{id}", name="pro_stage_parEntreprise")
      */
-    public function afficherStageParEntreprise($id)
+    public function afficherStageParEntreprise($id , StageRepository $repoStageEntreprise)
     {
-        $repoStageEntreprise = $this->getDoctrine()->getRepository(Stage::class);
         $stagesEntreprise = $repoStageEntreprise->findByNomEntreprise($id);
+
         return $this->render('pro_stage/index.html.twig',['stages'=>$stagesEntreprise]);
     }
     /**
      * @Route("/entreprise/", name="pro_stage_entreprise")
      */
-    public function afficherPageEntreprise()
+    public function afficherPageEntreprise(EntrepriseRepository $repoEntreprise)
     {
-      $repoEntreprise= $this->getDoctrine()->getRepository(Entreprise::class);
       $entreprises= $repoEntreprise->findAll();
+
       return $this->render('pro_stage/entreprises.html.twig',['entreprises'=>$entreprises]);
     }
 
@@ -76,11 +81,8 @@ class ProStageController extends AbstractController
     /**
      * @Route("/stages/{id}", name="pro_stage_stages")
      */
-    public function afficherPageStage($id)
+    public function afficherPageStage(Stage $stage)
     {
-      $repoStage = $this->getDoctrine()->getRepository(Stage::class);
-      $stage = $repoStage->find($id);
-
       return $this->render('pro_stage/stages.html.twig',['stage'=>$stage]);
     }
 

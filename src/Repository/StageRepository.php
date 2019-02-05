@@ -48,6 +48,20 @@ class StageRepository extends ServiceEntityRepository
        ;
    }
 
+   /**
+   * @return Stage[] Returns an array of Stage objects
+    */
+
+  public function findAllOrderByFormation()
+  {
+      return $this->createQueryBuilder('s')
+          ->join('s.formations','f')
+          ->orderBy('f.intitule','DESC')
+          ->getQuery()
+          ->getResult()
+      ;
+  }
+
     /**
     * @return Stage[] Returns an array of Stage objects
      */

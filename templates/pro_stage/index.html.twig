@@ -1,49 +1,58 @@
 {%extends "base.html.twig"%}
 
-  {% block contenu %}
 
 
-          <br>
+    {% block titrePage %}
+          Les derniers stages proposés
+    {% endblock %}
 
-    </div>
-    <div class="container">
+    {% block contenuPage %}
+    <div class="container-fluid">
     <div class="row">
       <div class="col-4">
         <div class="card">
           <div class="card-header">
-            Appliquer un filtre
+            <b>Appliquer un filtre</b>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="{{path('pro_stage')}}"><i class="icon-list-bullet"></i>Tous les stages</a></li>
-
-
-            <li class="list-group-item"><i class="icon-home">Par entreprise</i>
-
+            <li class="list-group-item">
+              <a href="{{path('pro_stage')}}">
+                <i class="icon-list-bullet">
+                  Tous les stages
+                </i>
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a href="{{path('pro_stage_tousParEntreprise')}}">
+                <i class="icon-home">
+                  Par entreprise
+                </i>
+              </a>
               <ul class="list-group list-group-flush">
 
                 <!-- Partie à déboguer (version txt )-->
-                {% for entrCouante in entreprises %}
+                {# {% for entrCouante in entreprises %} #}
 
-                 <a href=" {{ path('pro_stage_parEntreprise',{ 'id' :entrCouante.id} ) }} " >
+                 <!-- <a href=" {#{{ path('pro_stage_parEntreprise',{ 'id' :entrCouante.id} ) }} " >
                  <li class="list-group-item">{{entrCouante.intitule}}</a></li>
 
-                 {% endfor %}
-
-
-
+               {% endfor %} #} -->
               </ul>
-
-
             </li>
-          </a>
-            <li class="list-group-item"><i class="icon-book"></i>Par formation</li>
+            <li class="list-group-item">
+              <a href="{{path('pro_stage_tousParFormation')}}">
+                <i class="icon-book">
+                  Par formation
+                </i>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
       <div class="col-8">
         <div class="card">
           <div class="card-header">
-            Stages actuellement proposés
+            <b>Stages actuellement proposés</b>
           </div>
           <ul class="list-group list-group-flush">
             {% for stageCourant in stages %}
@@ -56,24 +65,9 @@
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 
 
 
-
-
-
-
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
-  {% endblock %}
+    {% endblock %}
