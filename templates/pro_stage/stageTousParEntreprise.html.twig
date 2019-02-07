@@ -32,7 +32,7 @@
         {% for stageCourant in stages %}
           <li class="list-group-item">
             <a href="{{ path('pro_stage_stages',{id:stageCourant.id})}}">
-              {{stageCourant.initule}}
+              {{stageCourant.initule}} - {{stageCourant.entreprise.intitule}}
             </a>
           </li>
         {% endfor %}
