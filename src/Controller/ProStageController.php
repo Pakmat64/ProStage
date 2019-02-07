@@ -9,10 +9,12 @@ use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Repository\StageRepository;
 use App\Repository\EntrepriseRepository;
+use App\Repository\FormationRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\HttpFoundation\Request;
 	use Doctrine\Common\Persistence\ObjectManager;
+	use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class ProStageController extends AbstractController
@@ -23,15 +25,7 @@ class ProStageController extends AbstractController
      */
     public function index(StageRepository $repoStage)
     {
-
-
         $stages = $repoStage->findByDistinctNom();
-
-
-
-          //$repoEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
-
-        //$entreprises = $repoEntreprise->findAll();
 
         return $this->render('pro_stage/index.html.twig',['stages'=>$stages]);
     }
@@ -65,7 +59,8 @@ class ProStageController extends AbstractController
 
         return $this->render('pro_stage/index.html.twig',['stages'=>$stagesEntreprise]);
     }
-    /**
+
+		/**
      * @Route("/entreprise/", name="pro_stage_entreprise")
      */
     public function afficherPageEntreprise(EntrepriseRepository $repoEntreprise)
@@ -78,9 +73,11 @@ class ProStageController extends AbstractController
     /**
      * @Route("/formations/", name="pro_stage_formation")
      */
-    public function afficherPageFormation()
+    public function afficherPageFormation(FormationRepository $repoFormation)
     {
-      return $this->render('pro_stage/formations.html.twig');
+			$formations = $repoFormation->findAll();
+
+			return $this->render('pro_stage/formations.html.twig',['formations'=>$formations]);
     }
 
     /**
@@ -90,7 +87,6 @@ class ProStageController extends AbstractController
     {
       return $this->render('pro_stage/stages.html.twig',['stage'=>$stage]);
     }
-
 
     /**
      * @Route("/entreprise/ajouter", name="pro_stage_entreprise_ajouter")
@@ -145,7 +141,7 @@ class ProStageController extends AbstractController
 	            $manager->flush();
 
 	            // Rediriger l'utilisateur vers la page d'accueil
-	            return $this->redirectToRoute('pro_stage');
+	            return $this->redirectToRoute('pro_stage_entreprise');
 	         }
 
       return $this->render('pro_stage/ajouterModifierEntreprise.html.twig',['vueFormulaire'=>$formulaireEntreprise->createView(),'action'=>"modifier"]);
@@ -165,6 +161,19 @@ class ProStageController extends AbstractController
       ->add('domaine')
       ->add('email')
       ->add('URL',UrlType::class)
+			->add('entreprise', EntityType::class, array(
+	                'class' => Entreprise::class,
+	                'choice_label' => 'intitule',
+	                'multiple' => false,
+	                'expanded' => false,
+	            ))
+			->add('formations', EntityType::class, array(
+					        'class' => Formation::class,
+					        'choice_label' => 'intitule',
+					        'multiple' => false,
+					        'expanded' => false,
+					    ))
+
       ->getForm();
 
        $formulaireStage->handleRequest($requete);
@@ -187,8 +196,6 @@ class ProStageController extends AbstractController
      */
     public function modifierStage(Request $requete, ObjectManager $manager,Stage $stage)
     {
-
-
       //Construction du formulaire
       $formulaireStage = $this->createFormBuilder($stage)
       ->add('initule')
@@ -196,13 +203,23 @@ class ProStageController extends AbstractController
       ->add('domaine')
       ->add('email')
       ->add('URL',UrlType::class)
+			->add('entreprise', EntityType::class, array(
+	                'class' => Entreprise::class,
+	                'choice_label' => 'intitule',
+	                'multiple' => false,
+	                'expanded' => false,))
+			->add('formations', EntityType::class, array(
+									'class' => Formation::class,
+									'choice_label' => 'intitule',
+									'multiple' => false,
+									'expanded' => false,))
       ->getForm();
 
        $formulaireStage->handleRequest($requete);
 
        if ($formulaireStage->isSubmitted() )
 	         {
-	            // Enregistrer la ressource en base de données
+	            // Enregistrer le stage en base de données
 	            $manager->persist($stage);
 	            $manager->flush();
 
@@ -213,5 +230,61 @@ class ProStageController extends AbstractController
       return $this->render('pro_stage/ajouterModifierStage.html.twig',['vueFormulaire'=>$formulaireStage->createView(),'action'=>"modifer"]);
     }
 
+		/**
+     * @Route("/formation/ajouter", name="pro_stage_formation_ajouter")
+     */
+    public function ajouterFormation(Request $requete, ObjectManager $manager)
+    {
+      $formation = new Formation();
 
+      //Construction du formulaire
+      $formulaireFormation = $this->createFormBuilder($formation)
+      ->add('intitule')
+      ->add('adresse',TextareaType::class)
+      ->add('telephone')
+      ->add('mail')
+      ->getForm();
+
+       $formulaireFormation->handleRequest($requete);
+
+       if ($formulaireFormation->isSubmitted() )
+	         {
+	            // Enregistrer la ressource en base de données
+	            $manager->persist($formation);
+	            $manager->flush();
+
+	            // Rediriger l'utilisateur vers la page d'accueil
+	            return $this->redirectToRoute('pro_stage');
+	         }
+
+      return $this->render('pro_stage/ajouterModifierFormation.html.twig',['vueFormulaire'=>$formulaireFormation->createView(),'action'=>"ajouter"]);
+    }
+
+		/**
+     * @Route("/formation/modifier/{id}", name="pro_stage_formation_modifier")
+     */
+    public function modifierFormation(Request $requete, ObjectManager $manager,Formation $formation)
+    {
+      //Construction du formulaire
+      $formulaireFormation = $this->createFormBuilder($formation)
+      ->add('intitule')
+      ->add('adresse',TextareaType::class)
+      ->add('telephone')
+      ->add('mail')
+      ->getForm();
+
+       $formulaireFormation->handleRequest($requete);
+
+       if ($formulaireFormation->isSubmitted() )
+	         {
+	            // Enregistrer la ressource en base de données
+	            $manager->persist($formation);
+	            $manager->flush();
+
+	            // Rediriger l'utilisateur vers la page d'accueil
+	            return $this->redirectToRoute('pro_stage_formation');
+	         }
+
+      return $this->render('pro_stage/ajouterModifierFormation.html.twig',['vueFormulaire'=>$formulaireFormation->createView(),'action'=>"modifier"]);
+    }
 }

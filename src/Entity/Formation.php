@@ -34,7 +34,7 @@ class Formation
     private $telephone;
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @ORM\Column(type="string", length=50)
      */
     private $mail;
 

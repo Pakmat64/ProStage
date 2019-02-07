@@ -2,21 +2,19 @@
 
 {% block titrePage %}
   {% if action == "ajouter" %}
-    Ajout d'une nouvelle entreprise
+    Ajout d'une nouvelle formation
   {% else %}
-    Modifier une entreprise
+    Modifier une formation
   {% endif %}
 
 {% endblock %}
 
 {% block contenuPage %}
   {{ form_start(vueFormulaire) }}
-    {{ form_row(vueFormulaire.intitule,{'label':"Nom de l'entreprise"})}}
-
-
+    {{ form_row(vueFormulaire.intitule,{'label':"Nom de la formation"})}}
     {{ form_row(vueFormulaire.adresse) }}
-    {{ form_row(vueFormulaire.activite) }}
-    {{ form_row(vueFormulaire.URL , {'attr':{'placeholder':"http://uneURL.com"}}) }}
+    {{ form_row(vueFormulaire.telephone) }}
+    {{ form_row(vueFormulaire.mail) }}
     <button type="submit" class="btn btn-dark">Enregistrer</button>
 
   {{ form_end(vueFormulaire) }}

@@ -4,21 +4,28 @@
   {% if action == "ajouter" %}
     Ajout d'un nouveau stage
   {% else %}
-    Modifier le stage
+    Modifier un stage
   {% endif %}
-    
+
 
 {% endblock %}
 
 {% block contenuPage %}
   {{ form_start(vueFormulaire) }}
-    <label> Intitulé du stage </label>
-    {{ form_widget(vueFormulaire.initule)}}
+    {{ form_row(vueFormulaire.initule,{'label':"Sujet du stage"})}}
 
     {{ form_row(vueFormulaire.descriptif) }}
+
     {{ form_row(vueFormulaire.domaine) }}
-    {{ form_row(vueFormulaire.email) }}
-    {{ form_row(vueFormulaire.URL , {'attr':{'placeholder':"http://uneURL.com"}}) }}
+
+    {{ form_row(vueFormulaire.email,{'attr':{'placeholder':"Adresse mail du responsable de l'entreprise" }}) }}
+
+    {{ form_row(vueFormulaire.URL , {'attr':{'placeholder':"URL d'une image représentant le stage"}}) }}
+
+    {{ form_row(vueFormulaire.entreprise,{'label':"Entreprise proposant le stage"})}}
+
+    {{ form_row(vueFormulaire.formations,{'label':"Formation concernée"})}}
+
     <button type="submit" class="btn btn-dark">Enregistrer</button>
 
   {{ form_end(vueFormulaire) }}
