@@ -1,0 +1,29 @@
+{%extends "base.html.twig"%}
+
+{% block titrePage %}
+  Voici la liste complète des stages
+{% endblock %}
+
+{% block contenuPage %}
+
+  <div class="card-columns">
+    {% for stageCourant in stages %}
+      <div class="card">
+        <a href="" class="card-link">
+          <img class="card-img-top" src="{{stageCourant.URL}}" alt="Card image cap">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{stageCourant.initule}}</h5>
+          <p class="card-text"><b>Description : </b>{{stageCourant.descriptif}}</p>
+          <p class="card-text"><b>Entreprise concernée : </b>{{stageCourant.entreprise.intitule}}</p>
+          <p class="card-text"><b>Domaine : </b>{{stageCourant.domaine}}</p>
+          <a href="{{path('pro_stage_stage_modifer',{id:stageCourant.id})}}" class="card-link">
+            Modifier
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+
+{% endblock %}

@@ -51,11 +51,11 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/parEntreprise/{id}", name="pro_stage_parEntreprise")
+     * @Route("/parEntreprise/{nom}", name="pro_stage_parEntreprise")
      */
-    public function afficherStageParEntreprise($id , StageRepository $repoStageEntreprise)
+    public function afficherStageParEntreprise($nom , StageRepository $repoStageEntreprise)
     {
-        $stagesEntreprise = $repoStageEntreprise->findByNomEntreprise($id);
+        $stagesEntreprise = $repoStageEntreprise->findByNomEntreprise($nom);
 
         return $this->render('pro_stage/index.html.twig',['stages'=>$stagesEntreprise]);
     }
@@ -68,6 +68,16 @@ class ProStageController extends AbstractController
       $entreprises= $repoEntreprise->findAll();
 
       return $this->render('pro_stage/entreprises.html.twig',['entreprises'=>$entreprises]);
+    }
+
+		/**
+     * @Route("/stages/", name="pro_stage_stages_tous")
+     */
+    public function afficherTousStages(StageRepository $repoStage)
+    {
+      $stages= $repoStage->findAll();
+
+      return $this->render('pro_stage/stagesTous.html.twig',['stages'=>$stages]);
     }
 
     /**
@@ -170,8 +180,8 @@ class ProStageController extends AbstractController
 			->add('formations', EntityType::class, array(
 					        'class' => Formation::class,
 					        'choice_label' => 'intitule',
-					        'multiple' => false,
-					        'expanded' => false,
+					        'multiple' => true,
+					        'expanded' => true,
 					    ))
 
       ->getForm();
@@ -210,9 +220,10 @@ class ProStageController extends AbstractController
 	                'expanded' => false,))
 			->add('formations', EntityType::class, array(
 									'class' => Formation::class,
+
 									'choice_label' => 'intitule',
-									'multiple' => false,
-									'expanded' => false,))
+									'multiple' => true,
+									'expanded' => true,))
       ->getForm();
 
        $formulaireStage->handleRequest($requete);
