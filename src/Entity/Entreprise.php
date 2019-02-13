@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
@@ -20,16 +21,27 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+	     * @Assert\Length(
+	     *      min = 4,
+	     *      minMessage = "Le titre doit faire au minimum {{ limit }} caractères"
+	     * )
      */
     private $intitule;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="#(rue|avenue|boulevard|impasse|allée|chemin|Quai)#",message="mauvais type de rue")
+     * @Assert\Regex(pattern="#[0-9]{5}#",message="mauvais code postal")
+     * @Assert\Regex(pattern="#^0#",message="mauvais numero de rue")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank(
+     *      message = "Le champs activité ne peut pas etre nul"
+     *  )
      */
     private $activite;
 
@@ -40,6 +52,8 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Le champs activité ne peut pas etre nul")
+      * @Assert\Url(message = "Ce n'est pas une URL type")
      */
     private $URL;
 

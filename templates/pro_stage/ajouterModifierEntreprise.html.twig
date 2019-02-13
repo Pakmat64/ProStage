@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block contenuPage %}
-  {{ form_start(vueFormulaire) }}
+  {{ form_start(vueFormulaire,{'attr':{'novalidate':'novalidate'}}) }}
     {{ form_row(vueFormulaire.intitule,{'label':"Nom de l'entreprise"})}}
 
 
