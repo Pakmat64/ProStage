@@ -21,7 +21,9 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *        message = "Ce champs de peut pas etre vide"
+     * )
 	     * @Assert\Length(
 	     *      min = 4,
 	     *      minMessage = "Le titre doit faire au minimum {{ limit }} caractères"
@@ -33,7 +35,6 @@ class Entreprise
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex(pattern="#(rue|avenue|boulevard|impasse|allée|chemin|Quai)#",message="mauvais type de rue")
      * @Assert\Regex(pattern="#[0-9]{5}#",message="mauvais code postal")
-     * @Assert\Regex(pattern="#^0#",message="mauvais numero de rue")
      */
     private $adresse;
 
