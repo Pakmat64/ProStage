@@ -15,7 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\HttpFoundation\Request;
 	use Doctrine\Common\Persistence\ObjectManager;
 	use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
+use App\Form\EntrepriseType;
+use App\Form\FormationType;
 
 class ProStageController extends AbstractController
 {
@@ -106,12 +107,8 @@ class ProStageController extends AbstractController
       $entreprise = new Entreprise();
 
       //Construction du formulaire
-      $formulaireEntreprise = $this->createFormBuilder($entreprise)
-      ->add('intitule')
-      ->add('adresse',TextareaType::class)
-      ->add('activite')
-      ->add('URL',UrlType::class)
-      ->getForm();
+      $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
+
 
        $formulaireEntreprise->handleRequest($requete);
 
@@ -135,12 +132,7 @@ class ProStageController extends AbstractController
     {
 
       //Construction du formulaire
-      $formulaireEntreprise = $this->createFormBuilder($entreprise)
-      ->add('intitule')
-      ->add('adresse',TextareaType::class)
-      ->add('activite')
-      ->add('URL',UrlType::class)
-      ->getForm();
+      $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
        $formulaireEntreprise->handleRequest($requete);
 
@@ -249,12 +241,7 @@ class ProStageController extends AbstractController
       $formation = new Formation();
 
       //Construction du formulaire
-      $formulaireFormation = $this->createFormBuilder($formation)
-      ->add('intitule')
-      ->add('adresse',TextareaType::class)
-      ->add('telephone')
-      ->add('mail')
-      ->getForm();
+      $formulaireFormation = $this->createForm(FormationType::class, $formation);
 
        $formulaireFormation->handleRequest($requete);
 
@@ -277,12 +264,7 @@ class ProStageController extends AbstractController
     public function modifierFormation(Request $requete, ObjectManager $manager,Formation $formation)
     {
       //Construction du formulaire
-      $formulaireFormation = $this->createFormBuilder($formation)
-      ->add('intitule')
-      ->add('adresse',TextareaType::class)
-      ->add('telephone')
-      ->add('mail')
-      ->getForm();
+      $formulaireFormation = $this->createForm(FormationType::class, $formation);
 
        $formulaireFormation->handleRequest($requete);
 

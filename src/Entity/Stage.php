@@ -35,7 +35,7 @@ class Stage
     private $entreprise;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", inversedBy="stages")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", inversedBy="stages",cascade={"persist"})
      */
     private $formations;
 
