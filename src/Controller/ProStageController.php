@@ -100,7 +100,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/entreprise/ajouter", name="pro_stage_entreprise_ajouter")
+     * @Route("/admin/entreprise/ajouter", name="pro_stage_entreprise_ajouter")
      */
     public function ajouterEntreprise(Request $requete, ObjectManager $manager)
     {
@@ -150,7 +150,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/stage/ajouter", name="pro_stage_stage_ajouter")
+     * @Route("/user/stage/ajouter", name="pro_stage_stage_ajouter")
      */
     public function ajouterStage(Request $requete, ObjectManager $manager)
     {
