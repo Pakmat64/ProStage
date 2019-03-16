@@ -7,13 +7,28 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
+use App\Entity\User;
 
 class AppFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-    //  $faker = Faker\Factory::create('fr_FR');
+    //---------Les utilisateurs -----------
+      $pako = new User();
+      $pako->setPrenom("Pako");
+      $pako->setNom("Mathieu");
+      $pako->setEmail("pakmat@live.fr");
+      $pako->setRoles(['ROLE_USER','ROLE_ADMIN']);
+      $pako->setPassword('$2y$10$gsXmlfUOZeo0TohuX5qvCuL5DGXSBAR6q4m3XCTXAxesajRU8rpSe');
+      $manager->persist($pako);
 
+      $nathan = new User();
+      $nathan->setPrenom("Nathan");
+      $nathan->setNom("Bechtel");
+      $nathan->setEmail("bechtel@outlook.com");
+      $nathan->setRoles(['ROLE_USER']);
+      $nathan->setPassword('$2y$10$aewbX9XoOfGmL1Ww8cMhnO3X2J/x/PZ1Qs4HJ8ktpOhz.COUqNJs6');
+      $manager->persist($nathan);
       //-------  Les entreprises  ---------
 
       $entrepriseSafran= new Entreprise();
