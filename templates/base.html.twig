@@ -68,23 +68,37 @@
               </button>
               <div class="collapse navbar-collapse " id="navbarNav">
                 <ul class="navbar-nav ">
-                  <li class="nav-item  ">
+                  <li class="nav-item active ">
                     <a class="nav-link enable" href="{{path('pro_stage')}}"> Acceuil <span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item navbar-nav">
+                  <li class="nav-item active navbar-nav">
                     <a class="nav-link enable" href="{{path('pro_stage_stages_tous')}}">Stages</a>
                   </li>
-                  <li class="nav-item navbar-nav">
+                  <li class="nav-item active navbar-nav">
                     <a class="nav-link enable" href="{{path('pro_stage_entreprise')}}">Entreprises</a>
                   </li>
-                  <li class="nav-item navbar-nav">
+                  <li class="nav-item active navbar-nav">
                     <a class="nav-link enable" href="{{path('pro_stage_formation')}}">Formations</a>
 
                   </li>
+                  {% if is_granted('ROLE_USER') %}
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{{path('app_logout')}}">
+                          {{ app.user.prenom }} {{ app.user.nom }}
+                          <i class="icon-user"></i>
+                          Déconnexion
+                          <span class="sr-only">(current)</span></a>
+                      </li>
+                      {% else %}
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{{path('app_login')}}">
+                          <i class="icon-user"></i>
+                          Connexion
+                          <span class="sr-only">(current)</span></a>
+                      </li>
+                      {% endif %}
                 </ul>
-                  <span class="navbar-text">
-                    <b>déconnexion</b> <i class="icon-user"></i>
-                   </span>
+
               </div>
             </nav>
 
