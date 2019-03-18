@@ -54,12 +54,14 @@
           </ul>
         </div>
 
+        {% if is_granted('ROLE_USER') %}
         <div class="card" style="margin-top:15px;">
           <div class="card-header">
             <b>Ajouter des champs</b>
           </div>
 
             <ul class="list-group list-group-flush">
+              {% if is_granted('ROLE_ADMIN') %}
               <li class="list-group-item">
                 <a href="{{path('pro_stage_entreprise_ajouter')}}">
                   <i class="icon-plus-squared">
@@ -67,6 +69,8 @@
                   </i>
                 </a>
               </li>
+              {% endif %}
+
               <li class="list-group-item">
                 <a href="{{path('pro_stage_stage_ajouter')}}">
                   <i class="icon-plus-squared">
@@ -74,6 +78,7 @@
                   </i>
                 </a>
               </li>
+
               <li class="list-group-item">
                 <a href="{{path('pro_stage_formation_ajouter')}}">
                   <i class="icon-plus-squared">
@@ -81,9 +86,12 @@
                   </i>
                 </a>
               </li>
+
             </ul>
 
-  </div>
+          </div>
+          {% endif %}
+
 
 
 
