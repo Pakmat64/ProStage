@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}Liste des formations{% endblock %}
+
+{% block contenuPage %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitule</th>
+                <th>Adresse</th>
+                <th>Telephone</th>
+                <th>Mail</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td>{{ formation.id }}</td>
+                <td>{{ formation.intitule }}</td>
+                <td>{{ formation.adresse }}</td>
+                <td>{{ formation.telephone }}</td>
+                <td>{{ formation.mail }}</td>
+                <td>
+                    <a href="{{ path('formation_show', {'id': formation.id}) }}" class="btn btn-outline-primary" >Consulter</a>
+                    <a href="{{ path('formation_edit', {'id': formation.id}) }}"class="btn btn-outline-primary">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">aucune formation trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('formation_new') }}">Ajouter une nouvelle formation</a>
+{% endblock %}
